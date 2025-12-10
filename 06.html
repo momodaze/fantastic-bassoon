@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function addArray(arr, n) {
+      let sum = 0
+      for (let i = 0; i < n; i++) {
+        sum += arr[i]
+      }
+      return sum
+    }
+    function maxNumber(arr, n) {
+      let max = 0
+      for (let i = 0; i < n; i++) {
+        if (max < arr[i]) {
+          max = arr[i]
+        }
+      }
+      return max
+    }
+    function filterEven(arr1, arr2, n) {
+      for (let i = 0; i < n; i++) {
+        if (arr1[i] % 2 === 0) {
+          arr2.push(arr1[i])
+        }
+      }
+      return arr2
+    }
+    let numbers = [10, 23, 45, 67, 78, 90, 12, 34, 56]
+    document.write(`Sum of Array: ${addArray(numbers, 9)} <br>`)
+    document.write(`Maximum Number: ${maxNumber(numbers, 9)} <br>`)
+    let evenNumbers = []
+    filterEven(numbers, evenNumbers, 9)
+    document.write(`Even Numbers: ${evenNumbers}`)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let cart = [
+      { item: "苹果", price: 5, quantity: 3 },
+      { item: "牛奶", price: 10, quantity: 2 },
+      { item: "面包", price: 8, quantity: 1 }
+    ];
+    function sum(cart) {
+      let total = 0;
+      for (let i = 0; i < cart.length; i++) {
+        total += cart[i].price * cart[i].quantity;
+      }
+      return total;
+    }
+    function searchItem(cart) {
+      let max = cart[0].price;
+      let name = cart[0].item;
+      for (let i = 1; i < cart.length; i++) {
+        if (cart[i].price > max) {
+          max = cart[i].price
+          name = cart[i].item
+        }
+      }
+      return { max, name };
+    }
+    function addItem(cart, newItem) {
+      let flag = 1
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].item === newItem.item) {
+          flag = 0
+          cart[i].quantity += newItem.quantity
+          break;
+        }
+      }
+      if (flag) {
+        cart.push(newItem)
+      }
+      return cart;
+    }
+    function discount(total, percentage) {
+      if (total >= 100) {
+        total *= 1 - percentage / 100
+      }
+      return total;
+    }
+
+  </script>
+</body>
+
+</html>

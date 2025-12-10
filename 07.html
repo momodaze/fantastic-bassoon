@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let scores = [85, 52, 78, 30, 88, 76, 95, 99, 84]
+    let marvolous = 0
+    let good = 0
+    let average = 0
+    let sum = 0
+    for (let i = 0; i < scores.length; i++) {
+      sum += scores[i]
+      if (scores[i] >= 90) {
+        marvolous++
+      }
+      if (scores[i] >= 60) {
+        good++
+      }
+      if (scores[i] < 60) {
+        document.write(` failed scores: ${scores[i]} `)
+      }
+    }
+    average = sum / scores.length
+    document.write(`<br> Marvolous Scores: ${marvolous} <br> Good Scores: ${good} <br> Average Score: ${average} `)
+    document.write(`<br> averange Scores: ${average} `)
+  </script>
+</body>
+
+</html>
