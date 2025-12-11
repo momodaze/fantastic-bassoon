@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let temperatures = [22, 25, 18, 30, 27, 20, 19]
+    function F(Array) {
+      let fahrenheitTemps = []
+      for (let i = 0; i < Array.length; i++) {
+        let fahrenheit = (Array[i] * 9 / 5) + 32
+        fahrenheitTemps.push(fahrenheit)
+      }
+      return fahrenheitTemps;
+    }
+    let max = Math.max(...temperatures)
+    let min = Math.min(...temperatures)
+    function average(temperatures) {
+      let sum = 0
+      for (let i = 0; i < temperatures.length; i++) {
+        sum += temperatures[i]
+      }
+      return sum / temperatures.length
+    }
+    function extremeWeather(Array) {
+      for (let i = 0; Array[i] < 0 || Array[i] > 35; i++) {
+        document.write('yes')
+        break
+      }
+    }
+    document.write(`Fahrenheit Temperatures: ${F(temperatures)} <br>`)
+    document.write(`Maximum Temperature: ${max} <br>`)
+    document.write(`Minimum Temperature: ${min} <br>`)
+    document.write(`Average Temperature: ${average(temperatures).toFixed(2)} <br>`)
+    extremeWeather(temperatures)
+  </script>
+</body>
+
+</html>
