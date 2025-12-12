@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: var(--a--Color);
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function getRandomcolor() {
+      let letters = '0123456789ABCDEFabcdef';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    let color = getRandomcolor();
+    document.documentElement.style.setProperty('--a--Color', color);
+  </script>
+  <div></div>
+</body>
+
+</html>
