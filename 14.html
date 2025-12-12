@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--rgb-color);
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function getRgbColor() {
+      let r = Math.floor(Math.random() * 256);
+      let g = Math.floor(Math.random() * 256);
+      let b = Math.floor(Math.random() * 256);
+      let opacity = Math.random().toFixed(2);
+      return `rgb(${r}, ${g}, ${b} , ${opacity})`;
+    }
+    document.documentElement.style.setProperty('--rgb-color', getRgbColor());
+  </script>
+  <div></div>
+</body>
+
+</html>
