@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css库/normalize.css">
+  <style>
+    * {
+      text-decoration: none;
+      list-style-type: none;
+
+    }
+
+    .background {
+      width: 400px;
+      height: 250px;
+      background-color: red;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .inner {
+      display: left;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- //随机抽奖案例 -->
+  <div class="background">
+    <div class="inner">
+      <h3>年终绩效表彰表</h3>
+      <h4>第一名：<span class="one">。。。</span></h4>
+      <h5>第二名：<span class="two">...</span></h5>
+      <h6>第三名：<span class="three">...</span></h6>
+    </div>
+  </div>
+  <script>
+    nameList = ['张吉惟', '林国瑞', '林玟书', '林雅南', '江亦云']
+    const random1 = Math.floor(Math.random() * nameList.length)
+    const one = document.querySelector('.one')
+    one.innerHTML = nameList[random1]
+    nameList.splice(random1, 1)
+    const random2 = Math.floor(Math.random() * nameList.length)
+    const two = document.querySelector('.two')
+    two.innerHTML = nameList[random2]
+    nameList.splice(random2, 1)
+    const three = document.querySelector('.three')
+    const random3 = Math.floor(Math.random() * nameList.length)
+    three.innerHTML = nameList[random3]
+
+
+  </script>
+</body>
+
+</html>
