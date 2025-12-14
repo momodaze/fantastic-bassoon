@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      text-decoration: none;
+    }
+
+    .box {
+      display: flex;
+
+      position: relative;
+      background-color: rgb(83, 82, 82);
+      width: 400px;
+      height: 400px;
+
+    }
+
+    .text {
+      position: absolute;
+      left: 150px;
+
+    }
+
+
+    button {
+      position: absolute;
+      height: 40px;
+      width: 90px;
+      bottom: 100px;
+    }
+
+    p {
+      margin-top: 100px;
+    }
+
+    .stop {
+      right: 70px;
+    }
+
+    .start {
+      left: 70px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="text">
+      <h2>随机点名</h2>
+      <p>姓名： <span class="name">？？？</span></p>
+
+    </div>
+    <button class="start">开始</button>
+    <button class="stop">结束</button>
+  </div>
+  <script>
+    let timer = null
+    const name = document.querySelector('.name')
+    const nameList = ['张吉惟', '林国瑞', '林玟书', '林雅南', '江亦云']
+    const start = document.querySelector('.start')
+    //点击按钮后生成随机数开始滚动
+    //通过计时器实现
+    start.addEventListener('click', function () {
+      timer = setInterval(function () {
+        const random = Math.floor(Math.random() * nameList.length)
+        name.innerHTML = nameList[random]
+      }, 35)
+    })
+    //点击结束之后滚动结束，得到名字
+    const stop = document.querySelector('.stop')
+    stop.addEventListener('click', function () { clearInterval(timer) })
+  </script>
+</body>
+
+</html>
