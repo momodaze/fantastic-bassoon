@@ -49,14 +49,30 @@ window.addEventListener('scroll', function () {
 
 //滚动至固定顶部
 const fixedNav = document.querySelector('.nav')
+const biIcon = document.querySelector('.biIcon')
+const moveCato = document.querySelector('.nav-cato-left')
+const tvIcon = document.querySelector('.tubiao tv')
+const searchBox = document.querySelector('.enter-center-search')
+const iBox = document.querySelector('.nav-search-input')
 window.addEventListener('scroll', function () {
   if (document.documentElement.scrollTop > 64) {
     fixedNav.style.position = 'fixed'
     fixedNav.style.backgroundColor = '#fff'
+    biIcon.style.display = 'block'
+    moveCato.classList.add('active')
+    searchBox.classList.add('active')
+    iBox.classList.add('active')
+
+
   }
   else {
     fixedNav.style.display = 'absolute'
     fixedNav.style.backgroundColor = 'rgb(252, 248, 248, .5)'
+    biIcon.style.display = 'none'
+    moveCato.classList.remove('active')
+    searchBox.classList.remove('active')
+    iBox.classList.remove('active')
+
   }
 })
 
@@ -79,7 +95,6 @@ window.addEventListener('scroll', () => {
 //晚点再修改
 const showBox = document.querySelector('.showBox');
 navv.addEventListener('mouseenter', () => {
-  // 方法1：直接修改样式（需要为 navv 添加 CSS 过渡）
   navv.style.height = '88px';
   navv.style.overflow = 'visible';
   showBox.style.transform = 'translateY(90px)';
@@ -96,10 +111,11 @@ navv.addEventListener('mouseleave', () => {
 })
 
 //给箭头做个旋转效果
+const rotate = document.querySelector('.rotate ')
 const arrow = document.querySelector('.rotate svg')
-arrow.addEventListener('mouseenter', () => {
+rotate.addEventListener('mouseenter', () => {
   arrow.style.transform = 'rotate(180deg)'
 })
-arrow.addEventListener('mouseleave', () => {
+rotate.addEventListener('mouseleave', () => {
   arrow.style.transform = 'rotate(0deg)'
 })
