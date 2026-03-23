@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成绩管理界面 | 静态框架</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    /* 主卡片容器 */
+    .grade-card {
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+    }
+
+    /* 头部 */
+    .header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      padding: 1.8rem 2rem;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header h1::before {
+      content: "📊";
+      font-size: 1.8rem;
+    }
+
+    .sub {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 0.5rem;
+    }
+
+    /* 主体内容 */
+    .main-content {
+      padding: 2rem;
+    }
+
+    /* 表格容器 */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 1rem;
+      border: 1px solid #e5e7eb;
+      background: white;
+      margin-bottom: 2rem;
+    }
+
+    .grade-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 500px;
+    }
+
+    .grade-table th {
+      background: #f9fafb;
+      padding: 1rem 1.2rem;
+      text-align: left;
+      font-weight: 600;
+      color: #1f2937;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .grade-table td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #f3f4f6;
+      vertical-align: middle;
+    }
+
+    .grade-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* 编号列居中 */
+    .grade-table th:first-child,
+    .grade-table td:first-child {
+      text-align: center;
+      width: 70px;
+    }
+
+    /* 成绩列样式 */
+    .grade-table td:nth-child(3) {
+      font-weight: 600;
+      color: #059669;
+    }
+
+    /* 删除按钮样式 */
+    .delete-btn {
+      background: #fee2e2;
+      border: none;
+      color: #dc2626;
+      padding: 0.4rem 1rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: #fecaca;
+      transform: scale(0.98);
+    }
+
+    /* 添加表单区域 */
+    .add-section {
+      background: #fefce8;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #fde047;
+    }
+
+    .form-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #854d0e;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .input-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #713f12;
+      margin-bottom: 0.25rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e2e8f0;
+      background: white;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #eab308;
+      box-shadow: 0 0 0 2px #fef08a;
+    }
+
+    .add-btn {
+      background: #eab308;
+      border: none;
+      padding: 0.65rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      color: #422006;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .add-btn:hover {
+      background: #ca8a04;
+      transform: translateY(-1px);
+    }
+
+    /* 统计面板 */
+    .stats-panel {
+      background: linear-gradient(115deg, #f0f9ff 0%, #e6f7f0 100%);
+      border-radius: 1rem;
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid #bae6fd;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-label {
+      font-weight: 500;
+      color: #1e3a8a;
+      font-size: 0.9rem;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0891b2;
+      line-height: 1;
+    }
+
+    .stat-unit {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    /* 空状态提示 */
+    .empty-message {
+      text-align: center;
+      padding: 2.5rem;
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .main-content {
+        padding: 1.2rem;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .add-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .stat-number {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grade-card">
+    <!-- 头部 -->
+    <div class="header">
+      <h1>成绩管理系统</h1>
+      <div class="sub">综合案例 · 增删查改 + 统计面板</div>
+    </div>
+
+    <div class="main-content">
+      <!-- 成绩表格区域 -->
+      <div class="table-wrapper">
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>科目</th>
+              <th>成绩</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody v-for="(item,index) in list " :key="item.id">
+            <!-- 示例数据行1：语文 46 -->
+            <tr>
+              <td>{{index+1}}</td>
+              <td>{{item.sub}}</td>
+              <td>{{item.score}}</td>
+              <td><button class="delete-btn" @click="del(item.id)">删除</button></td>
+            </tr>
+            <!-- 示例数据行2：英语 80
+            <tr>
+              <td>2</td>
+              <td>英语</td>
+              <td>80</td>
+              <td><button class="delete-btn">删除</button></td>
+            </tr>
+             示例数据行3：数学 100 -->
+            <!-- <tr>
+              <td>3</td>
+              <td>数学</td>
+              <td>100</td>
+              <td><button class="delete-btn">删除</button></td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 添加成绩表单 -->
+      <div class="add-section">
+        <div class="form-title">
+          <span>✏️</span> 新增成绩
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label>科目</label>
+            <input type="text" id="subjectInput" placeholder="例：语文、数学、英语" v-model="subject">
+          </div>
+          <div class="input-group">
+            <label>分数</label>
+            <input type="number" id="scoreInput" placeholder="0 ~ 100" min="0" max="100" v-model="grade">
+          </div>
+          <button class="add-btn" @click="add">➕ 添加成绩</button>
+        </div>
+      </div>
+
+      <!-- 统计面板：总分 + 平均分 -->
+      <div class="stats-panel">
+        <div class="stat-item">
+          <span class="stat-label">总分</span>
+          <span class="stat-number">{{sumup}}</span>
+          <span class="stat-unit">分</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">平均分</span>
+          <span class="stat-number">{{average}}</span>
+          <span class="stat-unit">分</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">科目数</span>
+          <span class="stat-number">{{list.length}}</span>
+          <span class="stat-unit">门</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.16/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '.grade-card',
+      data: {
+        grade: '',
+        subject: '',
+        list: [
+          { id: 1, sub: '语文', score: 90 },
+          { id: 2, sub: '数学', score: 81 }
+        ]
+      },
+      methods: {
+        add() {
+          if (this.subject.trim() === '') return
+          this.list.push({ id: this.list.length + 1, sub: this.subject, score: +this.grade })
+          this.grade = ''
+          this.subject = ''
+        },
+        del(id) {
+          this.list = this.list.filter(item => item.id !== id)
+        }
+      },
+      computed: {
+        sumup() {
+          let sum = this.list.reduce((prev, curr) => prev + curr.score, 0)
+          return sum
+        },
+        average() {
+          if (this.list.length === 0) return
+          return Math.floor((this.sumup / this.list.length) * 100) / 100
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -10,8 +10,10 @@
 </head>
 
 <body>
+    <!-- 这块是下滑后出现的二级导航栏 -->
     <div class="navv">
         <div class="border"></div>
+        <!-- 下滑后立刻可见的部分 -->
         <div class="center-cato-top">
             <a href="" class="vary">番剧</a>
             <a href="" class="vary">国创</a>
@@ -35,8 +37,8 @@
             <a href="" class="vary">小剧场</a>
             <a href="" class="vary">时尚美妆</a>
             <a href="" class="vary">动物</a>
-
         </div>
+        <!-- 靠右的小块上半部分 -->
         <div class="right-cato-top">
             <a href="" class="vary">vlog</a>
             <a href="" class="vary">绘画</a>
@@ -46,6 +48,7 @@
             <a href="" class="vary">人工智能</a>
 
         </div>
+        <!-- 这个showBox是鼠标悬停在下滑后出现的分类栏上的时候出现的剩余内容 -->
         <div class="showBox">
             <div class="center-cato-bottom">
                 <a href="" class="vary">vlog</a>
@@ -66,6 +69,7 @@
                 <a href="" class="vary">超高清</a>
             </div>
         </div>
+        <!-- 这里是悬停后滑出的部分里面的其他内容 -->
         <div class="left-only">
             <a href="">
                 <svg t="1764590610791" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -87,6 +91,7 @@
                 热门
             </a>
         </div>
+        <!-- 小箭头 -->
         <div class="rotate">
             <svg t="1770793651389" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 p-id="1369" width="15" height="15">
@@ -95,12 +100,13 @@
             </svg>
         </div>
     </div>
-    <!-- 最大的那个首页位置悬停的分类栏 -->
 
 
     <!-- 顶部导航栏 -->
     <header class="nav">
         <!-- 三个鼠标经过跳出的内容，后面做js 为啥没搞动画，因为动画太鬼畜了，诡异的抽动实在太难受了，而且会继承我之后给文字做的动画-->
+        <!-- 修改了这个地方的动画，改成了js添加类名的做法，跳动没那么鬼畜了 -->
+        <!-- 下面的这些都是在顶部的导航栏上悬停后出现的内容 -->
         <div class="gamecard"> </div>
         <div class="mangacard"></div>
         <div class="download"></div>
@@ -116,8 +122,10 @@
         <!-- 分了三个部分，这边是左边的分类部分，我偷懒没写成链接，或许之后会修改 -->
 
         <ul class="nav-cato-left">
+            <!-- 这个touch是悬停出现巨多巨细的频道分类 -->
             <li class="touch">
                 <div class="more-cato">
+                    <!-- 写了一个，后面的克隆一下，内容也是简单的先用这种全部填充了，由于操作相似，我就不一个个填那些复杂的svg了 -->
                     <ul class="catoUl">
                         <li><a href=""></a></li>
                         <li><a href=""></a></li>
@@ -130,13 +138,18 @@
                         <li><a href=""></a></li>
                         <li><a href=""></a></li>
                     </ul>
+                    <!-- 我怕自己忘了这块是干嘛的就把js写下面了 -->
                     <script>
+                        //被克隆那个
                         const catoUl = document.querySelector('.catoUl')
+                        //父盒子
                         const parent = document.querySelector('.more-cato')
                         for (let i = 0; i < 4; i++) {
+                            //连子代一起克隆
                             const clone = catoUl.cloneNode(true)
                             parent.appendChild(clone)
                         }
+                        //里面的svg和文字
                         const data = [
                             `<svg t="1770967140000" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1107" width="20" height="20"><path d="M516 980L12 48h1008L516 980z" fill="#8C8C8C" p-id="1108"></path></svg>番剧`,
                             `<svg t="1770967140000" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1107" width="20" height="20"><path d="M516 980L12 48h1008L516 980z" fill="#8C8C8C" p-id="1108"></path></svg>国创`,
@@ -149,6 +162,7 @@
                             `<svg t="1770967140000" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1107" width="20" height="20"><path d="M516 980L12 48h1008L516 980z" fill="#8C8C8C" p-id="1108"></path></svg>鬼畜`,
                             `<svg t="1770967140000" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1107" width="20" height="20"><path d="M516 980L12 48h1008L516 980z" fill="#8C8C8C" p-id="1108"></path></svg>音乐`
                         ]
+                        //forEach。得到所有的克隆的盒子，再获取他们里面的子盒子，再对子盒子进行渲染
                         const uls = document.querySelectorAll('.catoUl')
                         uls.forEach((ul, index) => {
                             const lis = ul.querySelectorAll('li')
@@ -159,8 +173,10 @@
                                 })
                             });
                         })
+
                     </script>
                 </div>
+                <!-- 图标，在蓝色背景里面的那个 -->
                 <div class="biIcon">
                     <svg t="1770883207061" class="icon" viewBox="0 0 2194 1024" version="1.1"
                         xmlns="http://www.w3.org/2000/svg" p-id="4981" width="70" height="70">
@@ -169,6 +185,8 @@
                             fill="#5dc3f8" p-id="4982"></path>
                     </svg>
                 </div>
+                <!-- 这边单独把首页和其他分开了，后续这个首页要改位置，而且它也不动，这样大概方便一点 -->
+                <!-- 这是最开始的上方那个导航部分 -->
                 <div class="shouye">
                     <svg t="1770881184156" class="tv" viewBox="0 0 1024 1024" version="1.1"
                         xmlns="http://www.w3.org/2000/svg" p-id="2664" width="20" height="20">
@@ -178,13 +196,14 @@
                     </svg>首页
                 </div>
             </li>
-            <li class="tubiao">番剧</li>
-            <li class="tubiao">直播</li>
-            <li class="tubiao-more1">游戏中心</li>
+            <!-- 写了自定义属性，后面事件委托让他们做跳动 -->
+            <li class="tubiao" data-jump="1">番剧</li>
+            <li class="tubiao" data-jump="1">直播</li>
+            <li class="tubiao-more1" data-jump="1">游戏中心</li>
 
-            <li class="tubiao">会员购</li>
-            <li class="tubiao-more2">漫画</li>
-            <li class="tubiao">赛事</li>
+            <li class="tubiao" data-jump="1">会员购</li>
+            <li class="tubiao-more2" data-jump="1">漫画</li>
+            <li class="tubiao" data-jump="1">赛事</li>
             <li class="tubiao-more3">下载客户端</li>
         </ul>
         <!-- 搜索框 -->
@@ -192,6 +211,7 @@
             <form action="#" id="search-box">
                 <div class="search-text">
                     <input class="nav-search-input" type="text">
+                    <div class="bc"></div>
                     <div class="search-predict">请输入搜索内容</div>
                     <div class="search-icon-color"></div>
                     <svg t="1764515406256" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -210,6 +230,7 @@
         <!-- 顶部导航栏右边的内容 -->
         <div class="right-enter">
             <!-- 第一个svg是用户，显然我还要后续搞一个交互的效果 -->
+            <!-- 搞完了 -->
             <svg t="1764589328517" class="user-icon" viewBox="0 0 1024 1024" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" p-id="6964" xmlns:xlink="http://www.w3.org/1999/xlink" width="200"
                 height="200">
@@ -307,7 +328,9 @@
             </path>
         </svg>
     </div>
-    <div class="nav-picture"></div>
+    <div class="nav-picture">
+        <div class="innerMove"></div>
+    </div>
     <!-- 下面一点点的分区内容 -->
     <div class="under-cato">
         <div class="poster-img">
@@ -429,63 +452,154 @@
     </div>
     <main>
         <!-- 返回顶部和刷新 -->
-        <div class="refresh"></div>
+        <div class="refresh">
+            <svg t="1772441182715" class="rBtn" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="5448" width="30" height="30">
+                <path
+                    d="M797.538462 699.648h-27.569231a319.744 319.744 0 0 0 61.873231-188.908308A320.157538 320.157538 0 0 0 512.059077 190.976a39.384615 39.384615 0 0 0-39.384615 39.384615 39.384615 39.384615 0 0 0 39.384615 39.384616 241.289846 241.289846 0 0 1 241.014154 240.994461 240.955077 240.955077 0 0 1-46.020923 141.469539v-44.228923a39.384615 39.384615 0 0 0-39.384616-39.384616 39.384615 39.384615 0 0 0-39.384615 39.384616v131.052307a39.384615 39.384615 0 0 0 39.384615 39.384616h129.969231a39.384615 39.384615 0 0 0 39.384615-39.384616 39.384615 39.384615 0 0 0-39.483076-39.384615z"
+                    fill="#8a8a8a" p-id="5449"></path>
+                <path
+                    d="M512 754.235077a241.250462 241.250462 0 0 1-240.994462-240.974769 240.817231 240.817231 0 0 1 46.020924-141.371077v38.006154a39.384615 39.384615 0 0 0 39.384615 39.384615 39.384615 39.384615 0 0 0 39.384615-39.384615V278.843077a39.384615 39.384615 0 0 0-39.384615-39.384615h-129.969231a39.384615 39.384615 0 0 0-39.384615 39.384615 39.384615 39.384615 0 0 0 39.384615 39.384615h32.393846a319.369846 319.369846 0 0 0-66.619077 194.953846 320.118154 320.118154 0 0 0 319.763693 319.744 39.384615 39.384615 0 0 0 39.384615-39.384615A39.384615 39.384615 0 0 0 512 754.235077z"
+                    fill="#8a8a8a" p-id="5450"></path>
+            </svg>
+        </div>
         <!-- 把下面的视频内容分了两半，一边跟轮播图一起 -->
+        <!-- 轮播图 -->
         <div class="container1">
-            <div class="video-card1">
+            <div class="swapcard">
+                <img src="" alt="">
+                <button class="right">&gt;</button>
+                <button class="left">&lt;</button>
+                <p>文字内容</p>
+                <ul class="spot">
+                    <li data-num="0"></li>
+                    <li data-num="1"></li>
+                    <li data-num="2"></li>
+                    <li data-num="3"></li>
+                    <li data-num="4"></li>
+                    <li data-num="5"></li>
+                </ul>
             </div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
-            <div class="video-card">视频5</div>
-            <div class="video-card">视频6</div>
+            <div class="swap-foot"></div>
+            <!-- 旁边的六个视频 -->
+            <div class="video-card">
+                <img src="" alt="">
+                <div class="shadow"></div>
+                <div class="text"></div>
+            </div>
+            <div class="video-card">
+
+                <img src="" alt="">
+                <div class="shadow"></div>
+                <div class="text"></div>
+            </div>
+            <div class="video-card">
+
+                <img src="" alt="">
+                <div class="shadow"></div>
+
+                <div class="text"></div>
+
+            </div>
+            <div class="video-card">
+
+                <img src="" alt="">
+                <div class="shadow"></div>
+
+                <div class="text"></div>
+
+            </div>
+            <div class="video-card">
+
+                <img src="" alt="">
+                <div class="shadow"></div>
+
+                <div class="text"></div>
+
+            </div>
+            <div class="video-card">
+
+                <img src="" alt="">
+                <div class="shadow"></div>
+
+                <div class="text"></div>
+
+            </div>
         </div>
-        <!-- 小部件 -->
-        <div class="fixed-item">
-            <div class="latter"></div>
-            <div class="refresh-btn"></div>
+        <!-- 固定位置的小组件 -->
+        <div class="beneathBox">
+            <ul class="innerBox">
+                <li class="fixedBox">
+                    <div class="latter">稍后</div>
+                    <div class="refresh2">刷新</div>
+                </li>
+                <li class="more">更多</li>
+                <li class="feedback">反馈</li>
+                <li class="toTop">回去</li>
+            </ul>
         </div>
-        <div class="more">
-            <div class="backfeed"></div>
-            <div class="agent"></div>
-        </div>
-        <div class="toTop"></div>
-        <!-- 先做个死页面吧。。 -->
+        <!-- 分出两个容器，我们后续通过后面的这个大块的视频容器进行无限滚动 -->
         <div class="container2">
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
-            <div class="video-card">视频1</div>
-            <div class="video-card">视频2</div>
-            <div class="video-card">视频3</div>
-            <div class="video-card">视频4</div>
+            <div class="video-card">视频1
+            </div>
+            <div class="video-card">视频2
+            </div>
+            <div class="video-card">视频3
+            </div>
+            <div class="video-card">视频4
+            </div>
             <div class="video-card">视频5</div>
         </div>
     </main>
-    <script src="../js/bilibili.js"></script>
+    <script src="../js/bilibili.js">
+
+    </script>
+    <!-- 3.7我觉得差不多的框架都已经完成了，剩下的细化就放着吧，我打算给这个文件加注释 -->
 </body>
 
 </html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .border {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 250px;
+      width: 600px;
+      height: 40px;
+      border: solid 2px #aacbea;
+      border-radius: 4px;
+    }
+
+    .btn {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 100px;
+      height: 40px
+    }
+
+    button {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #aacbea;
+    }
+
+    .text {
+      position: absolute;
+      top: 4px;
+      left: 2px;
+      width: 490px;
+      height: 30px;
+      border: none;
+      outline: none;
+      font-size: 22px;
+      color: #48a1f5;
+    }
+
+    ul {
+      position: relative;
+      top: 24px;
+      left: -2px;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 1;
+      list-style: none;
+      display: flex;
+      width: 560px;
+      height: auto;
+      border: solid 2px #aacbea;
+      border-radius: 0 0 4px 4px;
+      flex-direction: column;
+    }
+
+    li {
+      position: relative;
+      display: flex;
+      height: 40px;
+      width: 100%;
+    }
+
+    p {
+      margin-top: auto;
+      margin-bottom: auto;
+      color: #757c83;
+      margin-left: 30px;
+    }
+
+    .number {
+      position: absolute;
+      top: 8px;
+      width: 30px;
+      height: 30px;
+      color: #757c83;
+
+    }
+
+    li svg {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="border">
+      <form>
+        <input type="text" class="text" v-model="things" @keyup.enter="add()" placeholder="请输入待办事项">
+      </form>
+      <div class="btn">
+        <button class="press" @click="add()">添加</button>
+      </div>
+      <div class="todo">
+        <ul class="ul">
+          <li class="todoList" v-for="(item,index) in tofix" :key="item.id">
+            <div class="number">{{index+1}}.</div>
+            <p><u>{{item.thing}}</u></p>
+            <div class="cancel" @click="cancel(item.id)" style="z-index: 5;">
+              <svg t="1774180983214" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="1817" id="mx_n_1774180983215" width="20" height="20">
+                <path
+                  d="M843.861333 180.138667a42.666667 42.666667 0 0 1 2.176 58.005333l-2.176 2.346667L572.330667 512l271.530666 271.530667a42.666667 42.666667 0 0 1-58.005333 62.506666l-2.346667-2.176L512 572.330667 240.469333 843.861333a42.666667 42.666667 0 0 1-62.506666-58.005333l2.176-2.346667L451.626667 512 180.138667 240.469333a42.666667 42.666667 0 0 1 58.005333-62.506666l2.346667 2.176L512 451.626667 783.530667 180.138667a42.666667 42.666667 0 0 1 60.330666 0z"
+                  p-id="1818" fill="#757c83">
+
+                </path>
+              </svg>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.16/vue.js"></script>
+  <script>
+    const box = new Vue({
+      el: '#box',
+      data: {
+        tofix: [
+          { id: 1, thing: '跑步一公里' },
+          { id: 2, thing: '有氧一小时' }
+        ],
+        things: ''
+      },
+      methods: {
+        cancel(id) {
+          this.tofix = this.tofix.filter(item => item.id !== id)
+        },
+        add() {
+          if (this.things.trim() === '') {
+            alert('待办不能为空')
+            return
+          }
+          this.tofix.push({ id: this.tofix.length + 1, thing: this.things })
+          this.things = ''
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
